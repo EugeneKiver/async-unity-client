@@ -7,8 +7,11 @@ using System.Text;
 
 public class AsynchronousClient
 {
-    // The port number for the remote device.  
-    private const int port = 11000;
+    // The port number for the remote device. Can be configured at runtime.
+    public static int Port = 11000;
+
+    // The IP address for the remote device. Can be configured at runtime.
+    public static string IpAddress = "127.0.0.1";
 
     // ManualResetEvent instances signal completion.  
     private static ManualResetEvent connectDone =
@@ -33,11 +36,11 @@ public class AsynchronousClient
             //IPAddress ipAddress = ipHostInfo.AddressList[0];
             //IPAddress ipAddress = IPAddress.Parse("10.0.77.34");
 
-            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+            IPAddress ipAddress = IPAddress.Parse(IpAddress);
             //IPAddress ipAddress = IPAddress.Loopback;
 
-            Console.WriteLine("socket:" + ipAddress + ":" + port);
-            IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
+            Console.WriteLine("socket:" + ipAddress + ":" + Port);
+            IPEndPoint remoteEP = new IPEndPoint(ipAddress, Port);
             //IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
             // Create a TCP/IP socket.  
